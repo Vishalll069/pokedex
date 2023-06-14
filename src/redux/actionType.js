@@ -1,0 +1,5 @@
+export const GET_ALL_POKES = "GET_ALL_POKES"
+export const GET_LIMIT_POKES = "GET_LIMIT_POKES"
+export const HOME_LOAD = "HOME_LOAD"
+export const HOME_ERROR = "HOME_ERROR"
+// export const GET_ALL_POKES = "GET_ALL_POKES"

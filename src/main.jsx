@@ -2,13 +2,19 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
-import {ThemeProvider} from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import { theme } from "./theme.js";
+import { Provider } from "react-redux";
+import { store } from "./redux/store.js";
+import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
+import { BrowserRouter } from "react-router-dom";
+import GradientBackground from "./theme.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
-    <App />
-  </ThemeProvider>
+  <BrowserRouter>
+    <Provider store={store}>
+      <ChakraProvider>
+        <GradientBackground />
+        <App />
+      </ChakraProvider>
+    </Provider>
+  </BrowserRouter>
 );
