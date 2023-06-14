@@ -2,10 +2,35 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { getAllPokes } from "../redux/action";
 import { useDispatch, useSelector } from "react-redux";
-
+import { motion } from "framer-motion";
 import { PokemonCard } from "./PokemonCard";
-import { Box, SimpleGrid } from "@chakra-ui/react";
+import { Box, Center, SimpleGrid } from "@chakra-ui/react";
+import { Loader } from "./Loader";
 // import {} from ""
+
+const list = {
+  visible: {
+    opacity: 1,
+    transition: {
+      when: "beforeChildren",
+      staggerChildren: 0.35,
+      delayChildren: 0.75,
+    },
+  },
+  hidden: {
+    opacity: 0,
+    transition: {
+      when: "afterChildren",
+    },
+  },
+};
+
+const items = {
+  visible: { opacity: 1, x: 0 },
+  hidden: { opacity: 0, x: -150 },
+};
+
+
 
 const ListingPage = () => {
   const { allPokemons, isLoading } = useSelector((state) => state);
@@ -66,21 +91,33 @@ const ListingPage = () => {
 
   console.log(allPokemons, "All");
   return (
-    <Box mt={'5rem'}>
-      <h2>Pokémon Listing Page</h2>
+    <Box width={"90%"} margin={"auto"} position={"relative"} mt={"15rem"}>
       {isLoading ? (
-        <h1>...Home Load</h1>
+        <Loader/>
       ) : (
-        <SimpleGrid  columns={6} spacingX='3rem' spacingY='2rem'>
-          {
-            allPokemons?.map((pokemon) => (
-                <PokemonCard pokemon={pokemon} />
-            ))
-
-          }
+        <motion.ul style={{
+          display: "flex",
+          flexWrap: "wrap",
+          listStyleType: "none",
+          paddingInlineStart: "0px",
+          marginBlockStart: "0px",
+          marginBlockEnd: "0px",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+        initial="hidden"
+        animate="visible"
+        variants={list}>
+        <SimpleGrid columns={6} spacingX="3rem" spacingY="2rem">
+          {allPokemons?.map((pokemon) => (
+            <motion.li variants={items} key={pokemon.id} >
+              <PokemonCard pokemon={pokemon} />
+            </motion.li>
+          ))}
         </SimpleGrid>
+
+        </motion.ul>
       )}
-      ;
     </Box>
   );
 };

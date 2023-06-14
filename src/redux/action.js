@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_POKES, GET_LIMIT_POKES, HOME_ERROR, HOME_LOAD } from "./actionType";
+import { GET_ALL_POKES, GET_LIMIT_POKES, HOME_ERROR, HOME_LOAD, SEARCH_ERROR, SEARCH_LOAD, SEARCH_RES } from "./actionType";
 
 const getAllPokes = (res) => {
   return (dispatch) => {
@@ -20,5 +20,26 @@ const getAllPokes = (res) => {
   };
 };
 
+const searchAction = (searchIn) => {
+  return (dispatch) => {
+    try {
+      if(searchIn){
+        dispatch({ type: SEARCH_LOAD });
+        axios
+          .get(
+            `https://pokeapi.co/api/v2/pokemon/${searchIn}`
+          )
+          .then((res) => {
+            dispatch({ type: SEARCH_RES, payload: res.data });
+          });
 
-export {getAllPokes }
+      }
+    } catch (error) {
+      dispatch({ type: SEARCH_ERROR });
+    }
+  };
+};
+
+
+
+export {getAllPokes, searchAction }

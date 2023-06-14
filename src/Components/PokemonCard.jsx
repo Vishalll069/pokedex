@@ -68,6 +68,7 @@ export const PokemonCard = ({ pokemon }) => {
           _hover={{ opacity: "1" }}
         >
           <Image
+          width={'100%'}
             height={"70%"}
             bgGradient={`linear(to-t, ${finalBgColor[0]}, #182848)`}
             objectFit={"cover"}
@@ -80,7 +81,7 @@ export const PokemonCard = ({ pokemon }) => {
             alt=""
           />
 
-          <Box>
+          <Box top={0}>
             <Button
               borderTopRadius={"none"}
               bgColor={finalBgColor[0]}
@@ -90,14 +91,6 @@ export const PokemonCard = ({ pokemon }) => {
             </Button>
           </Box>
           <Box borderRadius={10} p={2} bg={"black"}>
-            <Heading
-              bg={"transparent"}
-              fontSize={"9px"}
-              mt={"10px"}
-              color={"#c7ddea"}
-            >
-              {pokemon.name}
-            </Heading>
             <br />
             <Flex justifyContent={"space-evenly"}>
               {pokemon.types.map((type) => (
