@@ -31,8 +31,8 @@ const SearchPage = () => {
     setSearchIn(e.target.value);
   };
 
-  console.log(debouncedText, "text");
-  console.log(searchedPoke, "pokeSea");
+  // console.log(debouncedText, "text");
+  // console.log(searchedPoke, "pokeSea");
   return (
     <>
       <Box mt={"15rem"} position={"relative"} pt={"30"}>

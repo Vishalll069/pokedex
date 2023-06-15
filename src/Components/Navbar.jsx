@@ -56,8 +56,8 @@ export const Navbar = () => {
             <Link to={"/"}>
               <NavComp child={"Home"} />
             </Link>
-            <Link to={"/about"}>
-              <NavComp child={"About us"} />
+            <Link to={"/bookmarks"}>
+              <NavComp child={"Books"} />
             </Link>
             <Link to={"/search"}>
               <NavComp child={"Search"} />

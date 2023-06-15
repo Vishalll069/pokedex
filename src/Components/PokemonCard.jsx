@@ -7,11 +7,29 @@ import {
   Image,
   Text,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import { colorTypeGradients } from "../utils/utils";
+import {BsBookmark ,BsFillBookmarkFill,BsFillInfoCircleFill} from 'react-icons/bs'
 import { Link } from "react-router-dom";
 
 export const PokemonCard = ({ pokemon }) => {
+  const [isBookmarked, setBookmarked] = useState(false)
+  const toggleBookmark = () => {
+    const bookmarkedPokemons = JSON.parse(localStorage.getItem('bookmarkedPokemons')) || [];
+
+    if (isBookmarked) {
+      // Remove Pokémon from bookmarks
+      const updatedBookmarks = bookmarkedPokemons.filter((name) => name !== pokemon.name);
+      localStorage.setItem('bookmarkedPokemons', JSON.stringify(updatedBookmarks));
+      setBookmarked(false);
+    } else {
+      // Add Pokémon to bookmarks
+      bookmarkedPokemons.push(pokemon);
+      localStorage.setItem('bookmarkedPokemons', JSON.stringify(bookmarkedPokemons));
+      setBookmarked(true);
+    }
+  };
+  
   let finalBgColor;
 
   if (pokemon.types.length == 2) {
@@ -29,7 +47,6 @@ export const PokemonCard = ({ pokemon }) => {
   }
 
   return (
-    <Link to={`/pokemon/${pokemon.name}`}>
     <Box
       borderRadius={20}
       bgGradient={`linear(to-t, ${finalBgColor[0]}, ${finalBgColor[1]})`}
@@ -48,7 +65,6 @@ export const PokemonCard = ({ pokemon }) => {
         bgPosition="center"
         bgRepeat="no-repeat"
         position="relative"
-        cursor="pointer"
         minW={"11%"}
         style={{ transition: "all 200ms ease " }}
         _hover={{
@@ -85,11 +101,16 @@ export const PokemonCard = ({ pokemon }) => {
 
           <Box top={0}>
             <Button
+            onClick={toggleBookmark}
               borderTopRadius={"none"}
               bgColor={finalBgColor[0]}
               width={"100%"}
             >
               {pokemon.name}
+              {
+                (isBookmarked)?<BsFillBookmarkFill style={{marginLeft:'1rem'}}/>:<BsBookmark style={{marginLeft:'1rem'}}/>
+              }
+              
             </Button>
           </Box>
           <Box borderRadius={10} p={2} bg={"black"}>
@@ -100,12 +121,16 @@ export const PokemonCard = ({ pokemon }) => {
                   <Text>{type.type.name}</Text>
                 </Badge>
               ))}
+              <Link to={`/pokemon/${pokemon.name}`}>
+              <BsFillInfoCircleFill color={finalBgColor[0]}  size={'1.6rem'}/>
+
+              </Link>
             </Flex>
           </Box>
         </Flex>
       </Box>
     </Box>
     
-    </Link>
+    
   );
 };
