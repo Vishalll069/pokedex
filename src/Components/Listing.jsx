@@ -109,7 +109,7 @@ const ListingPage = () => {
         initial="hidden"
         animate="visible"
         variants={list}>
-        <SimpleGrid columns={6} spacingX="3rem" spacingY="2rem">
+        <SimpleGrid columns={{ sm: 2, md: 3, lg: 6 }} spacingX="3rem" spacingY="2rem">
           {allPokemons?.map((pokemon) => (
             <motion.li variants={items} key={pokemon.id} >
               <PokemonCard pokemon={pokemon} />

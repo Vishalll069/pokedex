@@ -13,9 +13,9 @@ import {
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 // import {IoIosArrowForward} from '@chakra-ui/icons'
-import { BsDiscord, BsTwitter, BsBookmark,BsGithub} from "react-icons/bs";
-import {MdCatchingPokemon} from 'react-icons/md'
-import {FaSearchengin} from 'react-icons/fa'
+import { BsDiscord, BsTwitter, BsBookmark, BsGithub } from "react-icons/bs";
+import { MdCatchingPokemon } from "react-icons/md";
+import { FaSearchengin } from "react-icons/fa";
 import React from "react";
 import { Link } from "react-router-dom";
 import { NavComp } from "./Navcomponent";
@@ -26,6 +26,42 @@ export const Navbar = () => {
 
   return (
     <>
+      <Center
+        width={"100%"}
+        position={"fixed"}
+        top={"0"}
+        p={"1rem"}
+        bg={"#182848"}
+        zIndex={10}
+        display={["block", "block", "block", "none"]}
+      >
+        <Flex>
+        <Box>
+          <Image width={"50%"} src={logo} />
+        </Box>
+        <Stack
+            bg={"transparent"}
+            direction={"row"}
+            spacing="24px"
+            alignItems={"center"}
+            _hover={{ ".nav_text": { opacity: 1 } }}
+          >
+            <Link to={"/"}>
+              <NavComp icon={<MdCatchingPokemon />} />
+            </Link>
+            <Link to={"/bookmarks"}>
+              <NavComp icon={<BsBookmark />} />
+            </Link>
+            <Link to={"/search"}>
+              <NavComp icon={<FaSearchengin />} />
+            </Link>
+          </Stack>
+
+        </Flex>
+      </Center>
+      {/* Phone Nav */}
+
+
       <Center
         width={"100%"}
         position={"fixed"}
@@ -56,20 +92,26 @@ export const Navbar = () => {
             _hover={{ ".nav_text": { opacity: 1 } }}
           >
             <Link to={"/"}>
-              <NavComp child={"Home"} icon={<MdCatchingPokemon/>} />
+              <NavComp child={"Home"} icon={<MdCatchingPokemon />} />
             </Link>
             <Link to={"/bookmarks"}>
-              <NavComp child={`Books`} icon={<BsBookmark/>} />
+              <NavComp child={`Books`} icon={<BsBookmark />} />
             </Link>
             <Link to={"/search"}>
-              <NavComp child={"Search"} icon={<FaSearchengin/>} />
+              <NavComp child={"Search"} icon={<FaSearchengin />} />
             </Link>
           </Stack>
           <Stack direction={"row"} spacing="24px">
-            <NavComp child={<BsTwitter />} to={'https://twitter.com/fullstuckVishal'} />
+            <NavComp
+              child={<BsTwitter />}
+              to={"https://twitter.com/fullstuckVishal"}
+            />
 
-            <NavComp child={<BsDiscord />} to={'https://discord.com/'} />
-            <NavComp child={<BsGithub />} to={'https://github.com/Vishalll069'}/>
+            <NavComp child={<BsDiscord />} to={"https://discord.com/"} />
+            <NavComp
+              child={<BsGithub />}
+              to={"https://github.com/Vishalll069"}
+            />
           </Stack>
         </Flex>
       </Center>
