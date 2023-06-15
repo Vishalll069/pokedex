@@ -9,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { colorTypeGradients } from "../utils/utils";
+import { Link } from "react-router-dom";
 
 export const PokemonCard = ({ pokemon }) => {
   let finalBgColor;
@@ -28,6 +29,7 @@ export const PokemonCard = ({ pokemon }) => {
   }
 
   return (
+    <Link to={`/pokemon/${pokemon.name}`}>
     <Box
       borderRadius={20}
       bgGradient={`linear(to-t, ${finalBgColor[0]}, ${finalBgColor[1]})`}
@@ -103,5 +105,7 @@ export const PokemonCard = ({ pokemon }) => {
         </Flex>
       </Box>
     </Box>
+    
+    </Link>
   );
 };

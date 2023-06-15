@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_POKES, GET_LIMIT_POKES, HOME_ERROR, HOME_LOAD, SEARCH_ERROR, SEARCH_LOAD, SEARCH_RES } from "./actionType";
+import { DESC_POKE, GET_ALL_POKES, GET_LIMIT_POKES, HOME_ERROR, HOME_LOAD, SEARCH_ERROR, SEARCH_LOAD, SEARCH_RES, SELECTED_POKE } from "./actionType";
 
 const getAllPokes = (res) => {
   return (dispatch) => {
@@ -41,5 +41,39 @@ const searchAction = (searchIn) => {
 };
 
 
+const getPokemonDets =(name)=>{
+  return (dispatch) => {
+    try {
+        axios
+          .get(
+            `https://pokeapi.co/api/v2/pokemon/${name}`
+          )
+          .then((res) => {
+            dispatch({ type: SELECTED_POKE, payload: res.data });
+          });
+    } catch (error) {
+      console.log(error)
+      // dispatch({ type: SEARCH_ERROR });
+    }
+  };
+}
 
-export {getAllPokes, searchAction }
+const getPokeDesc =(name)=>{
+  return (dispatch)=>{
+    try {
+      axios
+        .get(
+          `https://pokeapi.co/api/v2/pokemon-species/${name}`
+        )
+        .then((res) => {
+          dispatch({ type: DESC_POKE, payload: res.data });
+        });
+  } catch (error) {
+    console.log(error)
+    // dispatch({ type: SEARCH_ERROR });
+  }
+  }
+}
+
+
+export {getAllPokes, searchAction, getPokemonDets, getPokeDesc }

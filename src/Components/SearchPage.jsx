@@ -35,7 +35,7 @@ const SearchPage = () => {
   console.log(searchedPoke, "pokeSea");
   return (
     <>
-      <Box mt={"10rem"} position={"relative"} pt={"30"}>
+      <Box mt={"15rem"} position={"relative"} pt={"30"}>
         <InputGroup
           bg="#242832"
           color="#dbd9ce"

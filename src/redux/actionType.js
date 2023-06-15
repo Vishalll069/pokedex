@@ -5,5 +5,7 @@ export const HOME_ERROR = "HOME_ERROR"
 export const SEARCH_RES = "SEARCH_RES"
 export const SEARCH_ERROR = "SEARCH_ERROR"
 export const SEARCH_LOAD = "SEARCH_LOAD"
+export const SELECTED_POKE = "SELECTED_POKE"
+export const DESC_POKE = "DESC_POKE"
 
 // export const GET_ALL_POKES = "GET_ALL_POKES"

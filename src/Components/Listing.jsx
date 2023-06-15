@@ -77,7 +77,7 @@ const ListingPage = () => {
 
   const getLimitPokes = () => {
     try {
-      axios.get(`https://pokeapi.co/api/v2/pokemon?&limit=151`).then((res) => {
+      axios.get(`https://pokeapi.co/api/v2/pokemon?&limit=151&offset=0`).then((res) => {
         dispatch(getAllPokes(res.data.results));
       });
     } catch (error) {
@@ -87,7 +87,7 @@ const ListingPage = () => {
 
   useEffect(() => {
     getLimitPokes();
-  }, [dispatch]);
+  }, [dispatch, getAllPokes]);
 
   console.log(allPokemons, "All");
   return (

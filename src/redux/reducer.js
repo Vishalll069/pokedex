@@ -1,4 +1,4 @@
-import { GET_ALL_POKES, GET_LIMIT_POKES, HOME_ERROR, HOME_LOAD, SEARCH_ERROR, SEARCH_LOAD, SEARCH_RES } from "./actionType";
+import { DESC_POKE, GET_ALL_POKES, GET_LIMIT_POKES, HOME_ERROR, HOME_LOAD, SEARCH_ERROR, SEARCH_LOAD, SEARCH_RES, SELECTED_POKE } from "./actionType";
 
 const initialState ={
     allPokemons : [],
@@ -7,7 +7,9 @@ const initialState ={
     isError : '',
     searchedPoke :[],
     searchLoad:false,
-    searchError:false
+    searchError:false,
+    selectedPoke:[],
+    pokeDesc:{}
 }
 
 export const reducer =(state = {...initialState} , action)=>{
@@ -26,6 +28,10 @@ export const reducer =(state = {...initialState} , action)=>{
             return {...state, searchLoad:true}
         case SEARCH_ERROR:
             return {...state, searchError:true}
+        case SELECTED_POKE:
+            return {...state, selectedPoke:[payload]}
+        case DESC_POKE:
+            return {...state, pokeDesc:payload}
         default:
             return state;
     }
