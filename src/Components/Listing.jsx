@@ -33,6 +33,7 @@ const items = {
 
 
 const ListingPage = () => {
+  const [allPokes, setAllPokes] = useState([])
   const { allPokemons, isLoading } = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -89,7 +90,7 @@ const ListingPage = () => {
     getLimitPokes();
   }, [dispatch, getAllPokes]);
 
-  console.log(allPokemons, "All");
+  // console.log(allPokemons, "All");
   return (
     <Box width={"90%"} margin={"auto"} position={"relative"} mt={"15rem"}>
       {isLoading ? (

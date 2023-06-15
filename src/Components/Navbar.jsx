@@ -13,7 +13,9 @@ import {
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 // import {IoIosArrowForward} from '@chakra-ui/icons'
-import { BsDiscord, BsTwitter } from "react-icons/bs";
+import { BsDiscord, BsTwitter, BsBookmark,BsGithub} from "react-icons/bs";
+import {MdCatchingPokemon} from 'react-icons/md'
+import {FaSearchengin} from 'react-icons/fa'
 import React from "react";
 import { Link } from "react-router-dom";
 import { NavComp } from "./Navcomponent";
@@ -54,19 +56,20 @@ export const Navbar = () => {
             _hover={{ ".nav_text": { opacity: 1 } }}
           >
             <Link to={"/"}>
-              <NavComp child={"Home"} />
+              <NavComp child={"Home"} icon={<MdCatchingPokemon/>} />
             </Link>
             <Link to={"/bookmarks"}>
-              <NavComp child={"Books"} />
+              <NavComp child={`Books`} icon={<BsBookmark/>} />
             </Link>
             <Link to={"/search"}>
-              <NavComp child={"Search"} />
+              <NavComp child={"Search"} icon={<FaSearchengin/>} />
             </Link>
           </Stack>
           <Stack direction={"row"} spacing="24px">
-            <NavComp child={<BsTwitter />} />
+            <NavComp child={<BsTwitter />} to={'https://twitter.com/fullstuckVishal'} />
 
-            <NavComp child={<BsDiscord />} />
+            <NavComp child={<BsDiscord />} to={'https://discord.com/'} />
+            <NavComp child={<BsGithub />} to={'https://github.com/Vishalll069'}/>
           </Stack>
         </Flex>
       </Center>

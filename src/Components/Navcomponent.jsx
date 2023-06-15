@@ -1,7 +1,7 @@
 import { Flex, Link, Text } from "@chakra-ui/react";
 import React from "react";
 
-export const NavComp = ({ child, to }) => {
+export const NavComp = ({ child, to, icon }) => {
   return (
     <Flex
       bg={"transparent"}
@@ -18,15 +18,19 @@ export const NavComp = ({ child, to }) => {
       cursor={"pointer"}
     >
       <Link href={to} >
-        <Text
+        <Flex
           className="nav_text"
           ml={"1rem"}
           fontSize={"1.5rem"}
           fontWeight={"500"}
           color={"white"}
+          justifyContent={'center'}
+          alignItems={'center'}
+          gap={'1rem'}
+          flexDirection={'row'}
         >
-          {child}
-        </Text>
+          {child}{icon}
+        </Flex>
       </Link>
     </Flex>
   );
